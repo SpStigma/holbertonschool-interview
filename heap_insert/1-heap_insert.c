@@ -9,45 +9,51 @@
  */
 heap_t *heap_insert(heap_t **root, int value)
 {
-    heap_t *newNode = binary_tree_node(NULL, value);
+    if (root == NULL)
+        return NULL;
 
+    heap_t *newNode = binary_tree_node(NULL, value);
     if (newNode == NULL)
         return NULL;
 
-    if (*root == NULL)
-        return *root = newNode;
+    if (*root == NULL) {
+        *root = newNode;
+        return newNode;
+    }
 
-    /* Insert the new node at the bottom level */
-    {
-        heap_t *parent = *root;
-        while (parent->left)
-            parent = parent->left;
+    /* Use an array-based queue for level-order traversal */
+    heap_t *queue[1024]; /* Assuming the heap won't have more than 1024 nodes */
+    int front = 0, rear = 0;
 
-        if (parent->right == NULL)
-            parent->right = newNode;
-        else
-        {
-            while (parent->parent && parent == parent->parent->right)
-                parent = parent->parent;
-            if (parent->parent)
-                parent = parent->parent->right;
-            while (parent->left)
-                parent = parent->left;
+    queue[rear++] = *root;
+
+    while (front < rear) {
+        heap_t *parent = queue[front++];
+
+        if (parent->left == NULL) {
             parent->left = newNode;
+            newNode->parent = parent;
+            break;
+        } else {
+            queue[rear++] = parent->left;
         }
-        newNode->parent = parent;
+
+        if (parent->right == NULL) {
+            parent->right = newNode;
+            newNode->parent = parent;
+            break;
+        } else {
+            queue[rear++] = parent->right;
+        }
     }
 
     /* Restore the heap property */
-    {
-        heap_t *current = newNode;
-        while (current->parent && current->n > current->parent->n)
-        {
-            int temp = current->n;
-            current->n = current->parent->n;
-            current->parent->n = temp;
-            current = current->parent;
-        }
+    heap_t *current = newNode;
+    while (current->parent && current->n > current->parent->n) {
+        int temp = current->n;
+        current->n = current->parent->n;
+        current->parent->n = temp;
+        current = current->parent;
     }
 
     return newNode;

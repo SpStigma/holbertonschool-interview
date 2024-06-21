@@ -32,14 +32,15 @@ if __name__ == '__main__':
                 print_results(statusCodes, fileSize)
             n_lines += 1
             data = line.split()
-            try:
-                """ Compute metrics """
-                statusCode = data[-2]
-                if statusCode in statusCodes:
-                    statusCodes[statusCode] += 1
-                fileSize += int(data[-1])
-            finally:
-                pass
+            if len(data) >= 2:
+                try:
+                    """ Compute metrics """
+                    statusCode = data[-2]
+                    if statusCode in statusCodes:
+                        statusCodes[statusCode] += 1
+                    fileSize += int(data[-1])
+                except (IndexError, ValueError):
+                    continue
         print_results(statusCodes, fileSize)
     except KeyboardInterrupt:
         """ Keyboard interruption, print from the beginning """

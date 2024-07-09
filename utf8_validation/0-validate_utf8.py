@@ -8,7 +8,7 @@ def validUTF8(data):
     """
     Determine if a given data set represents a valid UTF-8 encoding.
 
-    A character in UTF-8 can be 1 to 4 bytes long. 
+    A character in UTF-8 can be 1 to 4 bytes long.
     The data set can contain multiple characters.
     Each integer in the list represents 1 byte of data,
     therefore only the 8 least significant

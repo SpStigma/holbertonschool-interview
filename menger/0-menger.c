@@ -1,3 +1,5 @@
+#include <stdio.h>
+#include <math.h>
 #include "menger.h"
 
 /**
@@ -34,7 +36,7 @@ void menger(int level)
         return;
     }
 
-    size = pow(3, level);
+    size = (int)pow(3, level);
     for (y = 0; y < size; y++)
     {
         for (x = 0; x < size; x++)

@@ -26,15 +26,18 @@ void draw_menger(int x, int y, int size)
  */
 void menger(int level)
 {
+    int size;
+    int x, y;
+
     if (level < 0)
     {
         return;
     }
 
-    int size = pow(3, level);
-    for (int y = 0; y < size; y++)
+    size = pow(3, level);
+    for (y = 0; y < size; y++)
     {
-        for (int x = 0; x < size; x++)
+        for (x = 0; x < size; x++)
         {
             draw_menger(x, y, size);
         }

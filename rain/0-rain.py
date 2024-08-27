@@ -2,6 +2,13 @@
 
 
 def rain(walls):
+    """
+    Calculates the amount of rainwater trapped between walls after rainfall.
+
+    This function processes a list of integers representing wall heights aligned on a grid. 
+    Each wall has a width of 1 unit. It returns the total amount of water that can be trapped 
+    between the walls after it rains.
+    """
     if not walls:
         return 0
 

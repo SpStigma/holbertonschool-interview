@@ -1,11 +1,18 @@
 #!/usr/bin/python3
+"""
+Rain task
+"""
+
 
 def rain(walls):
     """
-    Calculates the amount of rainwater trapped between walls after rainfall.
+    Calculates the amount of rainwater trapped between
+    walls after rainfall.
 
-    This function processes a list of integers representing wall heights aligned on a grid. 
-    Each wall has a width of 1 unit. It returns the total amount of water that can be trapped 
+    This function processes a list of integers representing wall
+    heights aligned on a grid.
+    Each wall has a width of 1 unit. It returns the total amount
+    of water that can be trapped
     between the walls after it rains.
     """
     # Return 0 if the input list is empty

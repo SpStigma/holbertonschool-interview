@@ -26,10 +26,8 @@ void sift_down(int *array, size_t start, size_t end, size_t size)
 	size_t child;
 	size_t swap_idx;
 
-	// While the root has at least one child
 	while ((child = 2 * root + 1) <= end)
 	{
-		// Keeps track of the node to swap with
 		swap_idx = root;
 
 		if (array[swap_idx] < array[child])
@@ -58,11 +56,9 @@ void heap_sort(int *array, size_t size)
 	if (size < 2)
 		return;
 
-	// Build the max heap
 	for (start = (size - 2) / 2; (int)start >= 0; start--)
 		sift_down(array, start, size - 1, size);
 
-	// Extract elements from the heap one by one
 	for (end = size - 1; end > 0; end--)
 	{
 		swap(&array[0], &array[end]);

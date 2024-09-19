@@ -3,6 +3,7 @@
 
 import requests
 
+
 def count_words(subreddit, word_list, after=None, count_dict=None):
     ''''
     Count words.

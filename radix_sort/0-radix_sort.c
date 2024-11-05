@@ -60,7 +60,8 @@ void counting_sort(int *array, size_t size, int exp)
 }
 
 /**
- * radix_sort - Sorts an array of integers in ascending order using LSD Radix Sort.
+ * radix_sort - Sorts an array of integers in ascending order
+ * using LSD Radix Sort.
  * @array: The array to sort.
  * @size: The size of the array.
  */

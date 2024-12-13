@@ -21,10 +21,6 @@ int regex_match(const char *str, const char *pattern)
 	/* Handle '*' in the pattern */
 	if (*(pattern + 1) == '*')
 	{
-		/* Two options:
-		 * 1. Ignore the 'x*' in the pattern.
-		 * 2. Consume one character if the first matches.
-		 */
 		return (regex_match(str, pattern + 2) ||
 			(first_match && regex_match(str + 1, pattern)));
 	}

@@ -10,7 +10,7 @@
  * @word_len: The length of each word.
  * @nb_words: The number of words.
  * @words: The array of words.
- * 
+ *
  * Return: 1 if valid, 0 if not.
  */
 static int is_valid_substring(char const *s, int start, int word_len,
@@ -18,6 +18,7 @@ static int is_valid_substring(char const *s, int start, int word_len,
 {
 	int i, j;
 	int *word_used = (int *)malloc(sizeof(int) * nb_words);
+
 	if (!word_used)
 		return (0);
 
@@ -27,7 +28,8 @@ static int is_valid_substring(char const *s, int start, int word_len,
 	{
 		for (j = 0; j < nb_words; j++)
 		{
-			if (!word_used[j] && strncmp(s + start + i * word_len, words[j], word_len) == 0)
+			if (!word_used[j] && 
+    			strncmp(s + start + i * word_len, words[j], word_len) == 0)
 			{
 				word_used[j] = 1;
 				break;
@@ -50,7 +52,7 @@ static int is_valid_substring(char const *s, int start, int word_len,
  * @words: Array of words to form substrings.
  * @nb_words: Number of words.
  * @n: Pointer to store the number of valid substrings found.
- * 
+ *
  * Return: Array of starting indices of valid substrings, or NULL if none.
  */
 int *find_substring(char const *s, char const **words, int nb_words, int *n)

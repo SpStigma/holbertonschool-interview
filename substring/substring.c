@@ -16,35 +16,27 @@
 static int is_valid_substring(char const *s, int start, int word_len,
 		int nb_words, char const **words)
 {
-	char *temp_str;
 	int i, j;
-
-	temp_str = (char *)malloc(word_len * nb_words + 1);
-	if (!temp_str)
+	int *word_used = (int *)malloc(sizeof(int) * nb_words);
+	if (!word_used)
 		return (0);
 
-	for (i = 0; i < nb_words; i++) {
-		for (j = 0; j < word_len; j++) {
-			temp_str[i * word_len + j] = s[start + i * word_len + j];
-		}
-	}
-	temp_str[word_len * nb_words] = '\0';
+	memset(word_used, 0, sizeof(int) * nb_words);
 
 	for (i = 0; i < nb_words; i++) {
-		int found = 0;
 		for (j = 0; j < nb_words; j++) {
-			if (strcmp(temp_str + i * word_len, words[j]) == 0) {
-				found = 1;
+			if (!word_used[j] && strncmp(s + start + i * word_len, words[j], word_len) == 0) {
+				word_used[j] = 1;
 				break;
 			}
 		}
-		if (!found) {
-			free(temp_str);
+		if (j == nb_words) {
+			free(word_used);
 			return (0);
 		}
 	}
 
-	free(temp_str);
+	free(word_used);
 	return (1);
 }
 
@@ -59,7 +51,7 @@ static int is_valid_substring(char const *s, int start, int word_len,
  */
 int *find_substring(char const *s, char const **words, int nb_words, int *n)
 {
-	int word_len, i, j, s_len, *indices, index_count = 0;
+	int word_len, i, s_len, *indices, index_count = 0;
 
 	if (nb_words == 0 || !s || !words)
 		return (NULL);

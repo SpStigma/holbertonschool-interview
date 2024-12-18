@@ -23,14 +23,18 @@ static int is_valid_substring(char const *s, int start, int word_len,
 
 	memset(word_used, 0, sizeof(int) * nb_words);
 
-	for (i = 0; i < nb_words; i++) {
-		for (j = 0; j < nb_words; j++) {
-			if (!word_used[j] && strncmp(s + start + i * word_len, words[j], word_len) == 0) {
+	for (i = 0; i < nb_words; i++)
+	{
+		for (j = 0; j < nb_words; j++)
+		{
+			if (!word_used[j] && strncmp(s + start + i * word_len, words[j], word_len) == 0)
+			{
 				word_used[j] = 1;
 				break;
 			}
 		}
-		if (j == nb_words) {
+		if (j == nb_words)
+		{
 			free(word_used);
 			return (0);
 		}
@@ -66,13 +70,16 @@ int *find_substring(char const *s, char const **words, int nb_words, int *n)
 	if (!indices)
 		return (NULL);
 
-	for (i = 0; i <= s_len - word_len * nb_words; i++) {
-		if (is_valid_substring(s, i, word_len, nb_words, words)) {
+	for (i = 0; i <= s_len - word_len * nb_words; i++)
+	{
+		if (is_valid_substring(s, i, word_len, nb_words, words))
+		{
 			indices[index_count++] = i;
 		}
 	}
 
-	if (index_count == 0) {
+	if (index_count == 0)
+	{
 		free(indices);
 		return (NULL);
 	}

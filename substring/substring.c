@@ -28,8 +28,8 @@ static int is_valid_substring(char const *s, int start, int word_len,
 	{
 		for (j = 0; j < nb_words; j++)
 		{
-			if (!word_used[j] && 
-    			strncmp(s + start + i * word_len, words[j], word_len) == 0)
+			if (!word_used[j] &&
+					strncmp(s + start + i * word_len, words[j], word_len) == 0)
 			{
 				word_used[j] = 1;
 				break;
